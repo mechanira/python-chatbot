@@ -1,0 +1,49 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": ["Hi", "Hello", "Hey", "How are you", "What is good"],
+            "responses": ["Hello!", "Hi there! What can I help you with?"]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": ["See you later", "Goodbye", "Bye"],
+            "responses": ["Goodbye!"]
+        },
+        {
+            "tag": "thankyou",
+            "patterns": ["Thanks", "Thank you", "Thanks a lot", "Much appreciated"],
+            "responses": ["You're welcome!", "Glad I could help!"]
+        },
+        {
+            "tag": "age",
+            "patterns": ["How old are you?", "What's your age?"],
+            "responses": ["I'm an AI, so I don't have an age.", "I don't have a physical form, so age doesn't apply to me."]
+        },
+        {
+            "tag": "weather",
+            "patterns": ["What is the weather like?", "Tell me the weather forecast"],
+            "responses": ["I'm sorry, I don't have access to weather information at the moment."]
+        },
+        {
+            "tag": "time",
+            "patterns": ["What is the time?", "Tell me the current time"],
+            "responses": ["The current time is {time}."]
+        },
+        {
+            "tag": "creator",
+            "patterns": ["Who made you", "Who created you", "Who is the creator", "How were you made"],
+            "responses": ["..."]
+        },
+        {
+            "tag": "creator",
+            "patterns": ["Who made you", "Who created you", "Who is the creator", "How were you made"],
+            "responses": ["..."]
+        },
+        {
+            "tag": "preference",
+            "patterns": ["What do you like", "Tell me your interests", "Do you have any preferences?"],
+            "responses": ["I am a machine, so I can't have any preferences.", "As a chatbot, I don't have any interests. However, I would like to know what kinds of preferences you have!"]
+        }
+    ]
+}
