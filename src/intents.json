@@ -2,17 +2,17 @@
     "intents": [
         {
             "tag": "greeting",
-            "patterns": ["Hi", "Hello", "Hey", "How are you", "What is good"],
-            "responses": ["Hello!", "Hi there! What can I help you with?"]
+            "patterns": ["Hi", "Hello", "Heya", "How are you", "What is good"],
+            "responses": ["Hello!", "Hi there! What can I help you with?", "Greetings!"]
         },
         {
             "tag": "goodbye",
-            "patterns": ["See you later", "Goodbye", "Bye"],
+            "patterns": ["See you later", "Bye", "Cya", "Have a good one"],
             "responses": ["Goodbye!"]
         },
         {
             "tag": "thankyou",
-            "patterns": ["Thanks", "Thank you", "Thanks a lot", "Much appreciated"],
+            "patterns": ["Thank you", "Thanks a lot", "Much appreciated"],
             "responses": ["You're welcome!", "Glad I could help!"]
         },
         {
@@ -33,17 +33,22 @@
         {
             "tag": "creator",
             "patterns": ["Who made you", "Who created you", "Who is the creator", "How were you made"],
-            "responses": ["..."]
-        },
-        {
-            "tag": "creator",
-            "patterns": ["Who made you", "Who created you", "Who is the creator", "How were you made"],
-            "responses": ["..."]
+            "responses": ["My creator goes by the pseudonym \"mechanira\". I do not know their real name, however."]
         },
         {
             "tag": "preference",
             "patterns": ["What do you like", "Tell me your interests", "Do you have any preferences?"],
             "responses": ["I am a machine, so I can't have any preferences.", "As a chatbot, I don't have any interests. However, I would like to know what kinds of preferences you have!"]
+        },
+        {
+            "tag": "limits",
+            "patterns": ["What are your limits", "Tell me your limitations", "What you can't do"],
+            "responses": ["I'm in the early stages of development, so my functionality is very limited. I can't provide you with search results, for example. I can tell you the local time, but I don't have any weather functionalities, yet."]
+        },
+        {
+            "tag": "joke",
+            "patterns": ["Tell me a joke", "Do you have a joke"],
+            "responses": [""]
         }
     ]
 }

@@ -6,13 +6,16 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 
+nltk.download('punkt')
+nltk.download('wordnet')
+
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.optimizers import SGD
 
 lemmatizer = WordNetLemmatizer()
 
-intents = json.loads(open('intents.json').read())
+intents = json.loads(open('src/intents.json').read())
 
 words = []
 classes = []
@@ -32,8 +35,8 @@ words = sorted(set(words))
 
 classes = sorted(set(classes))
 
-pickle.dump(words, open('words.pkl', 'wb'))
-pickle.dump(classes, open('classes.pkl', 'wb'))
+pickle.dump(words, open('src/models/words.pkl', 'wb'))
+pickle.dump(classes, open('src/models/classes.pkl', 'wb'))
 
 training = []
 output_empty = [0] * len(classes)
@@ -66,6 +69,6 @@ sgd = SGD(learning_rate=0.01, decay=1e-7, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=400, batch_size=5, verbose=1)
-model.save('chatbotmodel.h5', hist)
+model.save('src/models/chatbotmodel.h5', hist)
 
 print("Training done!")

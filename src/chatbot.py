@@ -1,6 +1,7 @@
 import random
 import json
 import datetime
+import requests
 import pickle
 import numpy as np
 
@@ -10,11 +11,11 @@ from nltk.stem import WordNetLemmatizer
 from keras.models import load_model
 
 lemmatizer = WordNetLemmatizer()
-intents = json.loads(open('intents.json').read())
+intents = json.loads(open('src/intents.json').read())
 
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbotmodel.h5')
+words = pickle.load(open('src/models/words.pkl', 'rb'))
+classes = pickle.load(open('src/models/classes.pkl', 'rb'))
+model = load_model('src/models/chatbotmodel.h5')
 
 
 def clean_up_sentence(sentence):
@@ -49,9 +50,16 @@ def time(response):
     response = response.replace("{time}", current_time)
     return response
 
+def joke(response):
+    resp = requests.get('https://official-joke-api.appspot.com/random_joke')
+    if resp.status_code == 200:
+        joke_data = resp.json()
+        return f"{joke_data['setup']} {joke_data['punchline']}"
+
 
 mapping = {
-    "time": time
+    "time": time,
+    "joke": joke
 }
 
 
@@ -68,7 +76,7 @@ def get_response(intents_list, intents_json):
     return result
 
 print("Bot is running")
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 
 while True:

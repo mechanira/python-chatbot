@@ -160,6 +160,4 @@ cython_debug/
 #.idea/
 
 # models
-chatbotmodel.h5
-classes.pkl
-words.pkl
+models/
