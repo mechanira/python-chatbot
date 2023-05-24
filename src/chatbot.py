@@ -42,6 +42,10 @@ def predict_class(sentence):
     return_list = []
     for r in results:
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
+
+    if not return_list:
+        return_list.append({'intent': 'fallback', 'probability': '1.0'})
+
     return return_list
 
 
@@ -57,7 +61,7 @@ def joke(response):
         return f"{joke_data['setup']} {joke_data['punchline']}"
 
 
-mapping = {
+intent_mapping = {
     "time": time,
     "joke": joke
 }
@@ -69,14 +73,14 @@ def get_response(intents_list, intents_json):
     for i in list_of_intents:
         if i['tag'] == tag:
             result = random.choice(i['responses'])
-            handler = mapping.get(tag)  # Get the corresponding function handler from the mapping
+            handler = intent_mapping.get(tag)  # Get the corresponding function handler from the mapping
             if handler is not None:
                 result = handler(result)  # Pass the response to the function for further processing
             break
     return result
 
 print("Bot is running")
-DEBUG_MODE = False
+DEBUG_MODE = True
 
 
 while True:

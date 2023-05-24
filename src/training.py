@@ -5,15 +5,18 @@ import numpy as np
 
 import nltk
 from nltk.stem import WordNetLemmatizer
-
-nltk.download('punkt')
-nltk.download('wordnet')
-
+from nltk.tokenize import WordPunctTokenizer
+from nltk import pos_tag
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
-from keras.optimizers import SGD
+from keras.optimizers import Adam
+from keras.callbacks import EarlyStopping
 
+tokenizer = WordPunctTokenizer()
 lemmatizer = WordNetLemmatizer()
+
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
 
 intents = json.loads(open('src/intents.json').read())
 
@@ -24,13 +27,13 @@ ignore_letters = ['?', '!', '.', ',']
 
 for intent in intents['intents']:
     for pattern in intent['patterns']:
-        word_list = nltk.word_tokenize(pattern)
+        word_list = tokenizer.tokenize(pattern)
         words.extend(word_list)
         documents.append((word_list, intent['tag']))
         if intent['tag'] not in classes:
             classes.append(intent['tag'])
 
-words = [lemmatizer.lemmatize(word) for word in words if word not in ignore_letters]
+words = [lemmatizer.lemmatize(word.lower()) for word in words if word not in ignore_letters]
 words = sorted(set(words))
 
 classes = sorted(set(classes))
@@ -53,7 +56,7 @@ for document in documents:
     training.append([bag, output_row])
 
 random.shuffle(training)
-training = np.array(training, dtype=object)
+training = np.array(training)
 
 train_x = list(training[:, 0])
 train_y = list(training[:, 1])
@@ -65,10 +68,12 @@ model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
 
-sgd = SGD(learning_rate=0.01, decay=1e-7, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+optimizer = Adam(learning_rate=0.001)
+model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=400, batch_size=5, verbose=1)
-model.save('src/models/chatbotmodel.h5', hist)
+early_stopping = EarlyStopping(monitor='val_loss', patience=50, restore_best_weights=True)
+
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=1000, batch_size=32, validation_split=0.2, callbacks=[early_stopping], verbose=2)
+model.save('src/models/chatbotmodel.h5')
 
 print("Training done!")

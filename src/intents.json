@@ -2,13 +2,13 @@
     "intents": [
         {
             "tag": "greeting",
-            "patterns": ["Hi", "Hello", "Heya", "How are you", "What is good"],
-            "responses": ["Hello!", "Hi there! What can I help you with?", "Greetings!"]
+            "patterns": ["Hi", "Hello", "Hey", "Greetings", "Good day", "Howdy"],
+            "responses": ["Hello!", "Hi there! How can I assist you?", "Greetings!", "Hello! How may I help you today?"]
         },
         {
             "tag": "goodbye",
-            "patterns": ["See you later", "Bye", "Cya", "Have a good one"],
-            "responses": ["Goodbye!"]
+            "patterns": ["Goodbye", "See you later", "Farewell", "Take care", "Have a great day"],
+            "responses": ["Goodbye! Take care.", "Goodbye! Have a nice day.", "Farewell! See you next time."]
         },
         {
             "tag": "thankyou",
@@ -17,7 +17,7 @@
         },
         {
             "tag": "age",
-            "patterns": ["How old are you?", "What's your age?"],
+            "patterns": ["How old are you", "What is your age"],
             "responses": ["I'm an AI, so I don't have an age.", "I don't have a physical form, so age doesn't apply to me."]
         },
         {
@@ -37,7 +37,7 @@
         },
         {
             "tag": "preference",
-            "patterns": ["What do you like", "Tell me your interests", "Do you have any preferences?"],
+            "patterns": ["What do you like", "Tell me your interests", "Do you have any preferences?", "Do you like *"],
             "responses": ["I am a machine, so I can't have any preferences.", "As a chatbot, I don't have any interests. However, I would like to know what kinds of preferences you have!"]
         },
         {
@@ -46,9 +46,24 @@
             "responses": ["I'm in the early stages of development, so my functionality is very limited. I can't provide you with search results, for example. I can tell you the local time, but I don't have any weather functionalities, yet."]
         },
         {
+            "tag": "functionality",
+            "patterns": ["Tell me what you can do", "Functionality", "Your features"],
+            "responses": ["I'm an early model, so I can't really do much at the moment. However, I can tell you the time, find jokes, and hold simple conversations."]
+        },
+        {
+            "tag": "knowledge",
+            "patterns": ["Tell me about *", "Do you know about *"],
+            "responses": ["I'm sorry, I don't understand what you're talking about.", "Unfortunately, I don't know."]
+        },
+        {
             "tag": "joke",
-            "patterns": ["Tell me a joke", "Do you have a joke"],
+            "patterns": ["Tell me a joke", "Do you have a joke", "Give me a joke"],
             "responses": [""]
+        },
+        {
+            "tag": "fallback",
+            "patterns": [""],
+            "responses": ["I'm sorry, I'm not sure how to respond to that.", "Could you please rephrase your question?", "I'm not able to provide an answer to that at the moment.", "I apologize, but I don't have the information you're looking for."]
         }
     ]
 }
