@@ -6,7 +6,6 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import WordPunctTokenizer
-from nltk import pos_tag
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.optimizers import Adam
@@ -68,12 +67,12 @@ model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
 
-optimizer = Adam(learning_rate=0.001)
+optimizer = Adam(learning_rate=0.01)
 model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
-early_stopping = EarlyStopping(monitor='val_loss', patience=50, restore_best_weights=True)
+early_stopping = EarlyStopping(monitor='val_loss', patience=100, restore_best_weights=True)
 
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=1000, batch_size=32, validation_split=0.2, callbacks=[early_stopping], verbose=2)
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=1000, batch_size=16, validation_split=0.2, callbacks=[early_stopping], verbose=2)
 model.save('src/models/chatbotmodel.h5')
 
 print("Training done!")

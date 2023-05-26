@@ -2,6 +2,7 @@ import random
 import json
 import datetime
 import requests
+import webbrowser
 import pickle
 import numpy as np
 
@@ -43,9 +44,6 @@ def predict_class(sentence):
     for r in results:
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
 
-    if not return_list:
-        return_list.append({'intent': 'fallback', 'probability': '1.0'})
-
     return return_list
 
 
@@ -59,11 +57,19 @@ def joke(response):
     if resp.status_code == 200:
         joke_data = resp.json()
         return f"{joke_data['setup']} {joke_data['punchline']}"
+    
+def search(response):
+    print("\n" + prefix["bot"] + response)
+    query = input("\n" + prefix['user'])
+    webbrowser.open(f"https://google.com/search?q={query}")
+    return "Redirecting to Google..."
+
 
 
 intent_mapping = {
     "time": time,
-    "joke": joke
+    "joke": joke,
+    "search": search,
 }
 
 
@@ -79,16 +85,27 @@ def get_response(intents_list, intents_json):
             break
     return result
 
+
 print("Bot is running")
+
 DEBUG_MODE = True
 
+prefix = {
+    "user": "You: ",
+    "bot": "Bot: "
+}
 
-while True:
-    message = input("\nYou: ")
+
+def main():
+    message = input("\n" + prefix['user'])
     ints = predict_class(message)
     res = get_response(ints, intents)
-    print("Bot: " + res)
+    print("\n" + prefix['bot'] + res)
 
     if DEBUG_MODE:
-        probability = ints[0]['probability']
-        print(f"DEBUG: From intent '{ints[0]['intent']}' with a probablity of {float(probability) * 100} %")
+        print(ints)
+
+
+if __name__ == "__main__":
+    while True:
+        main()

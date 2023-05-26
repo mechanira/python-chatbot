@@ -2,17 +2,17 @@
     "intents": [
         {
             "tag": "greeting",
-            "patterns": ["Hi", "Hello", "Hey", "Greetings", "Good day", "Howdy"],
+            "patterns": ["Hi", "Hello", "Hey", "Greetings", "Good day", "Howdy", "How are you doing", "Nice to meet you"],
             "responses": ["Hello!", "Hi there! How can I assist you?", "Greetings!", "Hello! How may I help you today?"]
         },
         {
             "tag": "goodbye",
-            "patterns": ["Goodbye", "See you later", "Farewell", "Take care", "Have a great day"],
+            "patterns": ["Goodbye", "Bye", "See you later", "Farewell", "Take care", "Have a great day", "Good night"],
             "responses": ["Goodbye! Take care.", "Goodbye! Have a nice day.", "Farewell! See you next time."]
         },
         {
             "tag": "thankyou",
-            "patterns": ["Thank you", "Thanks a lot", "Much appreciated"],
+            "patterns": ["Thank you", "Much appreciated", "That is helpful", "I find this useful", "Thanks"],
             "responses": ["You're welcome!", "Glad I could help!"]
         },
         {
@@ -22,12 +22,12 @@
         },
         {
             "tag": "weather",
-            "patterns": ["What is the weather like?", "Tell me the weather forecast"],
+            "patterns": ["What is the weather like", "Tell me the weather forecast", "Do you know the weather"],
             "responses": ["I'm sorry, I don't have access to weather information at the moment."]
         },
         {
             "tag": "time",
-            "patterns": ["What is the time?", "Tell me the current time"],
+            "patterns": ["What is the time?", "Tell me the current time", "Please tell me the time"],
             "responses": ["The current time is {time}."]
         },
         {
@@ -38,11 +38,11 @@
         {
             "tag": "preference",
             "patterns": ["What do you like", "Tell me your interests", "Do you have any preferences?", "Do you like *"],
-            "responses": ["I am a machine, so I can't have any preferences.", "As a chatbot, I don't have any interests. However, I would like to know what kinds of preferences you have!"]
+            "responses": ["I am a machine, so I can't have any preferences.", "As a chatbot, I don't have any preferences. However, I would like to know what kinds of preferences you have!"]
         },
         {
             "tag": "limits",
-            "patterns": ["What are your limits", "Tell me your limitations", "What you can't do"],
+            "patterns": ["What are your limits", "Tell me your limitations", "Tell me what you cannot do"],
             "responses": ["I'm in the early stages of development, so my functionality is very limited. I can't provide you with search results, for example. I can tell you the local time, but I don't have any weather functionalities, yet."]
         },
         {
@@ -52,18 +52,18 @@
         },
         {
             "tag": "knowledge",
-            "patterns": ["Tell me about *", "Do you know about *"],
+            "patterns": ["Tell me about *", "Do you know about *", "What do you know about *", "What is *"],
             "responses": ["I'm sorry, I don't understand what you're talking about.", "Unfortunately, I don't know."]
         },
         {
             "tag": "joke",
-            "patterns": ["Tell me a joke", "Do you have a joke", "Give me a joke"],
-            "responses": [""]
+            "patterns": ["Tell me a joke", "Do you have jokes", "Give me a joke", "Entertain me"],
+            "responses": ["Sure thing! Here is a joke:", "I do have a joke. "]
         },
         {
-            "tag": "fallback",
-            "patterns": [""],
-            "responses": ["I'm sorry, I'm not sure how to respond to that.", "Could you please rephrase your question?", "I'm not able to provide an answer to that at the moment.", "I apologize, but I don't have the information you're looking for."]
+            "tag": "search",
+            "patterns": ["Do a google search", "Search online", "Look up online"],
+            "responses": ["Sure thing! Please provide me with a search query.", "Alright, tell me what you would like me to look up online.", "What do you need to search up?"]
         }
     ]
 }
